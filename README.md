@@ -10,51 +10,52 @@ It models:
 ##Key Features
 1. Memory Hierarchy
 	
-	It consists of:
-		- SSD (largest, slowest)
-		- DRAM 
-		- Cache Levels: L3, L2, L1 (smallest, fastest)
-	Each level has a fixed capacity, stores instructions, use an eviction policy 	when full
+It consists of:
+	- SSD (largest, slowest)
+	- DRAM 
+	- Cache Levels: L3, L2, L1 (smallest, fastest)
+Each level has a fixed capacity, stores instructions, use an eviction policy 	when full
 
 2. Data Movement 
 	
-	Data must move step by step through the hierarchy. No skipping levels 	is allowed. Movement follows SSD -> DRAM -> L3 -> L2 -> L1
+Data must move step by step through the hierarchy. No skipping levels is allowed. 
+Movement follows SSD -> DRAM -> L3 -> L2 -> L1
 
 3. Clock Driven Simulation
 
-	The system operates in clock cycles. Each transfer occurs over 	time, every movement or write increments the clock.
+The system operates in clock cycles. Each transfer occurs over 	time, every movement or write increments the clock.
 
 4. Read Operation
 
-	It searches backwards from L1 to SSD. If it's found in L1 then it's 	counted as a HIT. If found elsewhere then it's counted as a MISS. 	Data is either promoted if found in cache or loaded from the SSD.
+It searches backwards from L1 to SSD. If it's found in L1 then it's 	counted as a HIT. If found elsewhere then it's counted as a MISS. 	Data is either promoted if found in cache or loaded from the SSD.
 
 5. Write Operation
 
-	 Write occurs first in L1 and then flows downward to ensure data 	persistence. 
+Write occurs first in L1 and then flows downward to ensure data persistence. 
 
 6. Cache Replacement Policy 
 	
-	This simulation supports:
-		-LRU (least recently used, default)
-		-FIFO (First in First out)
-		-Random
-	LRU is implemented by tracking access order and evicting the least 	recently accessed instruction. 
+This simulation supports:
+	-LRU (least recently used, default)
+	-FIFO (First in First out)
+	-Random
+LRU is implemented by tracking access order and evicting the least 	recently accessed instruction. 
 
 #OutPut
 
 The program produces:
 
 Memory Configuration
-	Displays capacity and latency of each level
+Displays capacity and latency of each level
 
 Instruction Access Trace
-	Logs all operations: 
-		-Read
-		-Write
-		-HIT/MISS
+Logs all operations: 
+	-Read
+	-Write
+	-HIT/MISS
 
 Data Movement
-	Shows how instructions through the hierarchy
+Shows how instructions through the hierarchy
 
 Cache Hits/Misses
 
