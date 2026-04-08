@@ -91,14 +91,6 @@ class MemHierchy:
     def tick(self):
         self.clock += 1
         print(f'\nClock Cycle: {self.clock}')
-        self.pendingprocess()
-    
-    def schedule(self, data, froml, to):
-        lat = self.levels[froml].lat
-        ready = self.clock + lat
-        self.pending.append((ready, froml, to, data))
-        self._log('SCHEDULE', f'instruction=0x{data:08x} {self.levels[froml].name} to {self.levels[to].name} ready at {ready}')
-
     
     def read(self, instr):
         self.reads += 1
@@ -169,15 +161,6 @@ class MemHierchy:
     def _log(self, tag, msg):
         entry = f'[clock={self.clock:>3}] [{tag:<5}, {msg} ]'
         self.trace.append(entry)
-
-    def pendingprocess(self): #transfer
-        nowReady = [p for p in self.pending if p[0] <= self.clock]
-        self.pending = [p for p in self.pending if p[0] > self.clock]
-        
-        for ready, froml, to, data in nowReady:
-            dst = self.levels[to]
-            dst.add(data)
-            self._log('MOVE', f'0x{data:08x} sent to {dst.name}')
 
     def printres(self):
         print('\n--Memory Configuration--')
