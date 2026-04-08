@@ -1,5 +1,6 @@
 ##Overview
-This program simulates a processor moves instructions through memory.
+
+This program simulates how a processor moves instructions through memory.
 It models: 
 - Read
 - Write
